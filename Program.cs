@@ -43,6 +43,14 @@ namespace Senai.OO.Pizzaria.Mvc
                                 //Escolhe a opção do usuário
                                 switch (opcaoLogado)
                                 {
+                                    case 1:{
+                                        ProdutoViewController.CadastrarProduto();
+                                        break;
+                                    }
+                                    case 2:{
+                                        ProdutoViewController.ListarProdutos();
+                                        break;
+                                    }
                                     case 0:{
                                         System.Console.WriteLine("Tchau");
                                         break;
