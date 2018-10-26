@@ -11,7 +11,7 @@ namespace Senai.OO.Pizzaria.Mvc
     {
         static void Main(string[] args)
         {
-            int opcaoDeslogado = 0;
+            int opcaoDeslogado = 0, opcaoLogado = 0;
 
             do
             {
@@ -23,6 +23,40 @@ namespace Senai.OO.Pizzaria.Mvc
                 {
                     case 1:{
                         UsuarioViewController.CadastrarUsuario();
+                        break;
+                    }
+                    case 2:{
+                        //Vai para a tela de login e retorna o usuário caso válido
+                        UsuarioViewModel usuarioViewModel = UsuarioViewController.Logar();
+                        //Verifica se o usuário é válido
+                        if(usuarioViewModel != null){
+                            //Mostra mensagem de boas vindas
+                            System.Console.WriteLine("Seja bem vindo " + usuarioViewModel.Nome);
+
+                            do
+                            {
+                                //Mostra o menu do usuário logado
+                                MenuUtil.MenuLogado();
+                                //Aguarda opção do usuário
+                                opcaoLogado = int.Parse(Console.ReadLine());
+
+                                //Escolhe a opção do usuário
+                                switch (opcaoLogado)
+                                {
+                                    case 0:{
+                                        System.Console.WriteLine("Tchau");
+                                        break;
+                                    }
+                                    default:{
+                                        System.Console.WriteLine("Opção inválida");
+                                        break;
+                                    }
+                                }
+                                
+                            //Fica no laço enquanto opção diferente de 0
+                            } while (opcaoLogado != 0);
+                        }
+
                         break;
                     }
                     case 3:{
@@ -41,10 +75,6 @@ namespace Senai.OO.Pizzaria.Mvc
 
             } while (opcaoDeslogado != 0);
 
-
-
-            UsuarioViewController.CadastrarUsuario();
-            UsuarioViewController.Listar();
         }
     }
 }
